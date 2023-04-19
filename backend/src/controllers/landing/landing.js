@@ -1,5 +1,5 @@
 // Landing Page Controller
-exports.getLanding = (req, res) => {
+export const getLanding = (req, res) => {
   res.send(`
     <html>
       <head>
