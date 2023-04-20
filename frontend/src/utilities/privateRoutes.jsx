@@ -1,3 +1,4 @@
+// Import necessary modules and packages
 import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
@@ -5,6 +6,7 @@ import { AuthContext } from "../context/authContext";
 const PrivateRoutes = () => {
   const { currentUser } = useContext(AuthContext);
 
+  // Render the outlet if the user is authenticated, or redirect to the login page if not
   return currentUser ? <Outlet /> : <Navigate to="/login" />;
 };
 
