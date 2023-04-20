@@ -1,9 +1,9 @@
-import mysql from 'mysql';
-import dotenv from 'dotenv';
+import mysql from "mysql";
+import dotenv from "dotenv";
 
-dotenv.config({ path: '../api/.env' });
+dotenv.config({ path: "../backend/.env" });
 
-export const db = mysql.createConnection({
+const db = mysql.createConnection({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
@@ -11,4 +11,9 @@ export const db = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+const jwtConfig = {
+  secret: process.env.JWT_SECRET_KEY,
+  expiresIn: process.env.JWT_EXPIRATION,
+};
 
+export { db, jwtConfig };

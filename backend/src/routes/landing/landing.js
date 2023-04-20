@@ -1,8 +1,8 @@
 import express from "express";
-import { getLanding } from "../../controllers/landing/landing.js";
+import { Landing } from "../../controllers/landing/landing.js";
 
 const router = express.Router();
 
-router.get("/", getLanding);
+router.get("/", Landing);
 
 export default router;
