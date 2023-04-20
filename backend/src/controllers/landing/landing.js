@@ -1,5 +1,6 @@
-// Landing Page Controller
+// Define the Landing function to handle requests to the landing page
 export const Landing = (req, res) => {
+  // Send an HTML response with a simple message and styling
   res.send(`
     <html>
       <head>
