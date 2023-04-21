@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { makeRequest } from "../../utilities/axiosHelper";
-import { AuthContext } from "../../context/authContext";
+import { makeRequest } from "../../utils/axiosHelper";
+import { AuthContext } from "../../contexts/authContext";
 
 const Logout = () => {
   // Retrieve the setCurrentUser function from the AuthContext

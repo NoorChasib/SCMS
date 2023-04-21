@@ -13,9 +13,9 @@ import {
   Button,
   Alert,
 } from "@mantine/core";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../contexts/authContext";
 import { IconAlertCircle } from "@tabler/icons-react";
-import { makeRequest } from "../../utilities/axiosHelper";
+import { makeRequest } from "../../utils/axiosHelper";
 
 // The Register component
 function Register() {

@@ -1,6 +1,6 @@
 // Import necessary modules and packages
 import express from "express";
-import { Login } from "../../controllers/authentication/login.js";
+import { Login } from "../../controllers/auth/loginController.js";
 
 // Create an instance of the Router class from the Express.js framework
 const router = express.Router();

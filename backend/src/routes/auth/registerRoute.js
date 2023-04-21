@@ -1,12 +1,12 @@
 // Import necessary modules and packages
 import express from "express";
-import { Logout } from "../../controllers/authentication/logout.js";
+import { Register } from "../../controllers/auth/registerController.js";
 
 // Create an instance of the Router class from the Express.js framework
 const router = express.Router();
 
-// Define a route for user logout and map it to the Logout controller function
-router.post("/logout", Logout);
+// Define a route for user registration and map it to the Register controller function
+router.post("/register", Register);
 
 // Export the router object for use in other parts of the application
 export default router;

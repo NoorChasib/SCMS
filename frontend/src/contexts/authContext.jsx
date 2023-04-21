@@ -1,6 +1,6 @@
 // Import necessary modules and packages
 import { createContext, useEffect, useState } from "react";
-import { makeRequest } from "../utilities/axiosHelper";
+import { makeRequest } from "../utils/axiosHelper";
 
 // Create a new context object for authentication
 export const AuthContext = createContext();

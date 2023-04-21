@@ -5,11 +5,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import PrivateRoutes from "./utilities/privateRoutes";
-import Login from "./pages/login/login";
-import Register from "./pages/register/register";
-import Logout from "./pages/logout/logout";
-import Home from "./pages/home/home";
+import PrivateRoutes from "./utils/privateRoutes";
+import Login from "./pages/LoginPage/Login";
+import Register from "./pages/RegisterPage/Register";
+import Logout from "./pages/LogoutPage/Logout";
+import Home from "./pages/HomePage/Home";
 
 // Main component that renders the application
 function App() {

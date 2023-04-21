@@ -1,7 +1,7 @@
 // Import necessary modules and packages
 import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../contexts/authContext";
 
 const PrivateRoutes = () => {
   const { currentUser } = useContext(AuthContext);

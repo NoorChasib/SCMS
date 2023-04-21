@@ -1,5 +1,5 @@
 // Import necessary modules and packages
-import { db, jwtConfig } from "../../../connect.js";
+import { db, jwtConfig } from "../../../dbConnect.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 

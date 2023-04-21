@@ -13,7 +13,7 @@ import {
   Button,
   Alert,
 } from "@mantine/core";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../contexts/authContext";
 import { IconAlertCircle } from "@tabler/icons-react";
 
 function Login() {

@@ -2,16 +2,16 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { serverConfig } from "./connect.js";
+import { serverConfig } from "./dbConnect.js";
 
 // Create an instance of the Express application
 const app = express();
 
 // Import routes for the application
-import landingRoute from "./src/routes/landing/landing.js";
-import registerRoute from "./src/routes/authentication/register.js";
-import loginRoute from "./src/routes/authentication/login.js";
-import logoutRoute from "./src/routes/authentication/logout.js";
+import landingRoute from "./src/routes/landing/landingRoute.js";
+import registerRoute from "./src/routes/auth/registerRoute.js";
+import loginRoute from "./src/routes/auth/loginRoute.js";
+import logoutRoute from "./src/routes/auth/logoutRoute.js";
 
 // Define middleware functions for the application
 app.use((req, res, next) => {

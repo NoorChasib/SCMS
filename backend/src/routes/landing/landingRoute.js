@@ -1,6 +1,6 @@
 // Import necessary modules and packages
 import express from "express";
-import { Landing } from "../../controllers/landing/landing.js";
+import { Landing } from "../../controllers/landing/landingController.js";
 
 // Create an instance of the Router class from the Express.js framework
 const router = express.Router();

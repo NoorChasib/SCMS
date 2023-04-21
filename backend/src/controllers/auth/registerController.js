@@ -1,5 +1,5 @@
 // Import necessary modules and packages
-import { db } from "../../../connect.js";
+import { db } from "../../../dbConnect.js";
 import bcrypt from "bcryptjs";
 import { check, validationResult } from "express-validator";
 

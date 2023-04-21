@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { MantineProvider, createEmotionCache } from "@mantine/core";
-import { AuthContextProvider } from "./context/authContext";
+import { AuthContextProvider } from "./contexts/authContext";
 
 const appendCache = createEmotionCache({ key: "mantine", prepend: false });
 
