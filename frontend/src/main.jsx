@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <AuthContextProvider>
     <MantineProvider
       emotionCache={appendCache}
-      theme={{ fontFamily: "Source Sans Pro, sans-serif" }}
+      theme={{ fontFamily: "Inter, sans-serif" }}
     >
       <App />
     </MantineProvider>
