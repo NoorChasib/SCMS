@@ -10,6 +10,7 @@ import Login from "./pages/LoginPage/Login";
 import Register from "./pages/RegisterPage/Register";
 import Logout from "./pages/LogoutPage/Logout";
 import Home from "./pages/HomePage/Home";
+import Camera from "./pages/CameraPage/Camera";
 
 // Main component that renders the application
 function App() {
@@ -20,6 +21,8 @@ function App() {
         <Route element={<PrivateRoutes />}>
           {/* Home page is the landing page */}
           <Route element={<Home />} path="/" exact />
+          {/* Camera page */}
+          <Route element={<Camera />} path="/camera" />
         </Route>
         {/* Login page */}
         <Route element={<Login />} path="/login" />
