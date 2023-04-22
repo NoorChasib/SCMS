@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <AppShell
       navbarOffsetBreakpoint="sm"
-      navbar={<HomeLeftNavbar opened={opened} />}
+      navbar={<HomeLeftNavbar opened={opened} setOpened={setOpened} />}
       header={<HomeTopHeader opened={opened} setOpened={setOpened} />}
     >
       <HomeMainContent />
