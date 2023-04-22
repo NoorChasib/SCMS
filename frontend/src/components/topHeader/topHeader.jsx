@@ -27,7 +27,9 @@ const TopHeader = ({ opened, setOpened }) => {
           </Group>
         </Link>
 
-        <Text className="flex-1 text-center font-bold sm:mr-24">Overview</Text>
+        <Text className="flex-1 text-center font-bold sm:mr-24 sm:pr-3">
+          Overview
+        </Text>
       </div>
     </Header>
   );

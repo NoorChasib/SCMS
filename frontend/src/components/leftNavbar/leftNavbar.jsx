@@ -36,7 +36,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
             to="/camera"
             onClick={() => setOpened((o) => !o)}
           >
-            Camera 1
+            Left Camera
           </Button>
         </Navbar.Section>
 
@@ -51,7 +51,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
             to="/camera"
             onClick={() => setOpened((o) => !o)}
           >
-            Camera 2
+            Center Camera
           </Button>
         </Navbar.Section>
 
@@ -66,7 +66,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
             to="/camera"
             onClick={() => setOpened((o) => !o)}
           >
-            Camera 3
+            Right Camera
           </Button>
         </Navbar.Section>
 
