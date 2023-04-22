@@ -6,10 +6,25 @@ import {
   Group,
   ActionIcon,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { IconFingerprint, IconSun, IconMoonStars } from "@tabler/icons-react";
+import { AuthContext } from "../../contexts/authContext";
+import { useContext } from "react";
 
 const TopHeader = ({ opened, setOpened, darkMode, setDarkMode }) => {
+  const { userData } = useContext(AuthContext);
+  const { cameras } = userData || {};
+  const location = useLocation();
+  const { id } = useParams();
+  const isCameraPath = location.pathname.startsWith("/camera");
+
+  const getCameraName = (id) => {
+    const camera = cameras.find((camera) => camera.id === parseInt(id));
+    return camera ? camera.name : "";
+  };
+
+  const displayText = isCameraPath ? getCameraName(id) : "Overview";
+
   return (
     <Header height={{ base: 60 }} withBorder={false} fz="lg">
       <div className="flex h-full items-center bg-blue-700 text-white shadow-lg sm:justify-start sm:pl-4">
@@ -35,7 +50,7 @@ const TopHeader = ({ opened, setOpened, darkMode, setDarkMode }) => {
         </Link>
 
         <Text className="flex-1 text-center font-bold sm:mr-12 sm:pr-2">
-          Overview
+          {displayText}
         </Text>
 
         <Group className="pr-4 sm:pr-2">
