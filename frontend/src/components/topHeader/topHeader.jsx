@@ -1,8 +1,15 @@
-import { Header, Text, MediaQuery, Burger, Group } from "@mantine/core";
+import {
+  Header,
+  Text,
+  MediaQuery,
+  Burger,
+  Group,
+  ActionIcon,
+} from "@mantine/core";
 import { Link } from "react-router-dom";
-import { IconFingerprint } from "@tabler/icons-react";
+import { IconFingerprint, IconSun, IconMoonStars } from "@tabler/icons-react";
 
-const TopHeader = ({ opened, setOpened }) => {
+const TopHeader = ({ opened, setOpened, darkMode, setDarkMode }) => {
   return (
     <Header height={{ base: 60 }} withBorder={false} fz="lg">
       <div className="flex h-full items-center bg-blue-700 text-white shadow-lg sm:justify-start sm:pl-4">
@@ -27,9 +34,21 @@ const TopHeader = ({ opened, setOpened }) => {
           </Group>
         </Link>
 
-        <Text className="flex-1 text-center font-bold sm:mr-24 sm:pr-3">
+        <Text className="flex-1 text-center font-bold sm:mr-12 sm:pr-2">
           Overview
         </Text>
+
+        <Group className="pr-4 sm:pr-2">
+          <ActionIcon
+            color={darkMode ? "yellow" : "blue"}
+            size="lg"
+            radius="xl"
+            variant="transparent"
+            onClick={() => setDarkMode((d) => !d)}
+          >
+            {darkMode ? <IconSun size={30} /> : <IconMoonStars size={30} />}
+          </ActionIcon>
+        </Group>
       </div>
     </Header>
   );
