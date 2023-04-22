@@ -1,7 +1,7 @@
 import { Text } from "@mantine/core";
 
 const HomeMainContent = () => {
-  return <Text>Resize app to see responsive navbar in action</Text>;
+  return <Text>Home</Text>;
 };
 
 export default HomeMainContent;

@@ -1,6 +1,6 @@
 import { AppShell } from "@mantine/core";
-import HomeLeftNavbar from "../../components/homeLeftNavbar/homeLeftNavbar";
-import HomeTopHeader from "../../components/homeTopHeader/homeTopHeader";
+import LeftNavbar from "../../components/leftNavbar/leftNavbar";
+import TopHeader from "../../components/topHeader/topHeader";
 import HomeMainContent from "../../components/homeMainContent/homeMainContent";
 import { useState } from "react";
 
@@ -10,8 +10,8 @@ const Home = () => {
   return (
     <AppShell
       navbarOffsetBreakpoint="sm"
-      navbar={<HomeLeftNavbar opened={opened} setOpened={setOpened} />}
-      header={<HomeTopHeader opened={opened} setOpened={setOpened} />}
+      navbar={<LeftNavbar opened={opened} setOpened={setOpened} />}
+      header={<TopHeader opened={opened} setOpened={setOpened} />}
     >
       <HomeMainContent />
     </AppShell>
