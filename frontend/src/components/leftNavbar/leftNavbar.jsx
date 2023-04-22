@@ -1,8 +1,12 @@
 import { Navbar, Divider, Button } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { IconVideo, IconCamera, IconLogout } from "@tabler/icons-react";
+import { AuthContext } from "../../contexts/authContext";
+import { useContext } from "react";
 
 const LeftNavbar = ({ opened, setOpened }) => {
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <Navbar hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 235, lg: 300 }}>
       <div className="h-full bg-blue-700 p-4 text-white">
@@ -76,13 +80,14 @@ const LeftNavbar = ({ opened, setOpened }) => {
             radius="md"
             size="md"
             fullWidth
+            uppercase
             variant="white"
             color="dark"
             component={Link}
             to="/logout"
             onClick={() => setOpened((o) => !o)}
           >
-            Username
+            {currentUser.username}
           </Button>
         </Navbar.Section>
       </div>
