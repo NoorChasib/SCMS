@@ -11,6 +11,10 @@ export default {
         xs: { max: "30em" },
       },
       colors: {
+        bg: {
+          100: "#ffffff",
+          300: "#1A1B1E",
+        },
         blue: {
           100: "#ffffff",
           300: "#3da5d9",
