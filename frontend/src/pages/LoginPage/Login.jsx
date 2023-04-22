@@ -19,7 +19,7 @@ import { IconAlertCircle, IconFingerprint } from "@tabler/icons-react";
 
 function Login() {
   // Retrieve the login function and current user from the AuthContext
-  const { login, currentUser } = useContext(AuthContext);
+  const { login, userData } = useContext(AuthContext);
 
   // Set an error state for displaying authentication errors
   const [error, setError] = useState("");
@@ -28,7 +28,7 @@ function Login() {
   const navigate = useNavigate();
 
   // If a current user exists, navigate to the home page
-  if (currentUser) {
+  if (userData) {
     // Use the Navigate component to redirect to the home page
     return <Navigate to="/" replace />;
   }

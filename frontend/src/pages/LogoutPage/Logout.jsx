@@ -4,8 +4,8 @@ import { makeRequest } from "../../utils/axiosHelper";
 import { AuthContext } from "../../contexts/authContext";
 
 const Logout = () => {
-  // Retrieve the setCurrentUser function from the AuthContext
-  const { setCurrentUser } = useContext(AuthContext);
+  // Retrieve the setUserData function from the AuthContext
+  const { setUserData } = useContext(AuthContext);
 
   useEffect(() => {
     // Define a function to handle the logout process
@@ -27,12 +27,12 @@ const Logout = () => {
         "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
       // Update the AuthContext to indicate that the user is logged out
-      setCurrentUser(null);
+      setUserData(null);
     };
 
     // Call the performLogout function when the component mounts
     performLogout();
-  }, [setCurrentUser]);
+  }, [setUserData]);
 
   // Use the Navigate component from react-router-dom to redirect to the login page
   return <Navigate to="/login" replace />;

@@ -21,14 +21,14 @@ import { makeRequest } from "../../utils/axiosHelper";
 // The Register component
 function Register() {
   // Get the current user from the AuthContext
-  const { currentUser } = useContext(AuthContext);
+  const { userData } = useContext(AuthContext);
   // Initialize state to keep track of any errors
   const [error, setError] = useState("");
   // Get the navigate function from the react-router-dom
   const navigate = useNavigate();
 
   // If there is a current user, redirect to home page
-  if (currentUser) {
+  if (userData) {
     return <Navigate to="/" replace />;
   }
 

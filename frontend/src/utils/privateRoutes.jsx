@@ -4,10 +4,10 @@ import { Outlet, Navigate } from "react-router-dom";
 import { AuthContext } from "../contexts/authContext";
 
 const PrivateRoutes = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { userData } = useContext(AuthContext);
 
   // Render the outlet if the user is authenticated, or redirect to the login page if not
-  return currentUser ? <Outlet /> : <Navigate to="/login" />;
+  return userData ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoutes;

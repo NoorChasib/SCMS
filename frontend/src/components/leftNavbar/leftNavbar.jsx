@@ -5,7 +5,8 @@ import { AuthContext } from "../../contexts/authContext";
 import { useContext } from "react";
 
 const LeftNavbar = ({ opened, setOpened }) => {
-  const { currentUser } = useContext(AuthContext);
+  const { userData } = useContext(AuthContext);
+  const { user } = userData || {};
 
   return (
     <Navbar
@@ -92,7 +93,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
             to="/logout"
             onClick={() => setOpened((o) => !o)}
           >
-            {currentUser.username}
+            {user.username}
           </Button>
         </Navbar.Section>
       </div>
