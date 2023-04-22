@@ -8,7 +8,12 @@ const LeftNavbar = ({ opened, setOpened }) => {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <Navbar hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 235, lg: 300 }}>
+    <Navbar
+      hiddenBreakpoint="sm"
+      hidden={!opened}
+      withBorder={false}
+      width={{ sm: 235, lg: 300 }}
+    >
       <div className="h-full bg-blue-700 p-4 text-white">
         <Navbar.Section>
           <Button
