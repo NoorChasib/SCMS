@@ -12,10 +12,13 @@ import {
   Container,
   Button,
   Alert,
+  Group,
+  Avatar,
 } from "@mantine/core";
 import { AuthContext } from "../../contexts/authContext";
 import { IconAlertCircle } from "@tabler/icons-react";
 import { makeRequest } from "../../utils/axiosHelper";
+import logo from "/logo.svg";
 
 // The Register component
 function Register() {
@@ -63,8 +66,13 @@ function Register() {
       {/* Use the Container component from Mantine to center the login form */}
       <Container size={420} py={80}>
         {/* Display the page title and a welcome message */}
-        <Title align="center">SCMS</Title>
-        <Title align="center">Create an account!</Title>
+        <Group position="center" align="center">
+          <Avatar src={logo} alt="no image here" />
+          <Title>SCMS</Title>
+        </Group>
+        <Title align="center" mt={5}>
+          Create an account!
+        </Title>
 
         {/* Display a message with a link to the registration page */}
         <Text color="dimmed" size="sm" align="center" mt={5}>

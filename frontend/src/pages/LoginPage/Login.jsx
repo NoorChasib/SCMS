@@ -12,9 +12,12 @@ import {
   Container,
   Button,
   Alert,
+  Avatar,
+  Group,
 } from "@mantine/core";
 import { AuthContext } from "../../contexts/authContext";
 import { IconAlertCircle } from "@tabler/icons-react";
+import logo from "/logo.svg";
 
 function Login() {
   // Retrieve the login function and current user from the AuthContext
@@ -66,8 +69,13 @@ function Login() {
       {/* Use the Container component from Mantine to center the login form */}
       <Container size={420} py={80}>
         {/* Display the page title and a welcome message */}
-        <Title align="center">SCMS</Title>
-        <Title align="center">Welcome back!</Title>
+        <Group position="center" align="center">
+          <Avatar src={logo} alt="no image here" />
+          <Title>SCMS</Title>
+        </Group>
+        <Title align="center" mt={5}>
+          Welcome back!
+        </Title>
 
         {/* Display a message with a link to the registration page */}
         <Text color="dimmed" size="sm" align="center" mt={5}>
