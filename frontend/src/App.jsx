@@ -22,7 +22,7 @@ function App() {
           {/* Home page is the landing page */}
           <Route element={<Home />} path="/" exact />
           {/* Camera page */}
-          <Route element={<Camera />} path="/camera" />
+          <Route element={<Camera />} path="/camera/:id" />
         </Route>
         {/* Login page */}
         <Route element={<Login />} path="/login" />
