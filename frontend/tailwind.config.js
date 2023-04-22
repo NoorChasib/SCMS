@@ -10,6 +10,15 @@ export default {
         sm: { max: "48em" },
         xs: { max: "30em" },
       },
+      colors: {
+        blue: {
+          100: "#ffffff",
+          300: "#3da5d9",
+          500: "#007ea7",
+          700: "#003459",
+          900: "#00171f",
+        },
+      },
     },
   },
   plugins: [],
