@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 const LeftNavbar = ({ opened, setOpened }) => {
   const { userData } = useContext(AuthContext);
-  const { user } = userData || {};
+  const { user, cameras } = userData || {};
 
   return (
     <Navbar
@@ -16,6 +16,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
       width={{ sm: 235, lg: 300 }}
     >
       <div className="h-full bg-blue-700 p-4 text-white">
+        {/* Top Navbar */}
         <Navbar.Section>
           <Button
             leftIcon={<IconCamera />}
@@ -35,51 +36,26 @@ const LeftNavbar = ({ opened, setOpened }) => {
 
         <Divider my="sm" />
 
-        <Navbar.Section my="xl">
-          <Button
-            leftIcon={<IconVideo />}
-            radius="md"
-            size="md"
-            fullWidth
-            variant="subtle"
-            component={Link}
-            to="/camera"
-            onClick={() => setOpened((o) => !o)}
-          >
-            Left Camera
-          </Button>
-        </Navbar.Section>
+        {/* Middle Navbar */}
+        {cameras &&
+          cameras.map((camera) => (
+            <Navbar.Section key={camera.id} my="xl">
+              <Button
+                leftIcon={<IconVideo />}
+                radius="md"
+                size="md"
+                fullWidth
+                variant="subtle"
+                component={Link}
+                to={`/camera/${camera.id}`}
+                onClick={() => setOpened((o) => !o)}
+              >
+                {camera.name}
+              </Button>
+            </Navbar.Section>
+          ))}
 
-        <Navbar.Section my="xl">
-          <Button
-            leftIcon={<IconVideo />}
-            radius="md"
-            size="md"
-            fullWidth
-            variant="subtle"
-            component={Link}
-            to="/camera"
-            onClick={() => setOpened((o) => !o)}
-          >
-            Center Camera
-          </Button>
-        </Navbar.Section>
-
-        <Navbar.Section my="xl">
-          <Button
-            leftIcon={<IconVideo />}
-            radius="md"
-            size="md"
-            fullWidth
-            variant="subtle"
-            component={Link}
-            to="/camera"
-            onClick={() => setOpened((o) => !o)}
-          >
-            Right Camera
-          </Button>
-        </Navbar.Section>
-
+        {/* Bottom Navbar */}
         <Navbar.Section className="absolute bottom-5 w-full pr-8">
           <Button
             leftIcon={<IconLogout />}
