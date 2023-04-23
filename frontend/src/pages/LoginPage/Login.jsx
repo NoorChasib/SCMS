@@ -14,12 +14,12 @@ import {
   Alert,
   Group,
 } from "@mantine/core";
-import { AuthContext } from "../../contexts/authContext";
+import { DataContext } from "../../contexts/dataContext";
 import { IconAlertCircle, IconFingerprint } from "@tabler/icons-react";
 
 function Login() {
-  // Retrieve the login function and current user from the AuthContext
-  const { login, userData } = useContext(AuthContext);
+  // Retrieve the login function and current user from the DataContext
+  const { login, userData } = useContext(DataContext);
 
   // Set an error state for displaying authentication errors
   const [error, setError] = useState("");
@@ -36,7 +36,7 @@ function Login() {
   // Handle the login form submission
   const handleLogin = async (e) => {
     try {
-      // Call the login function from the AuthContext with the form values
+      // Call the login function from the DataContext with the form values
       await login(form.values);
 
       // Navigate to the home page upon successful login

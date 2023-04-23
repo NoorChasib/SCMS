@@ -14,14 +14,14 @@ import {
   Alert,
   Group,
 } from "@mantine/core";
-import { AuthContext } from "../../contexts/authContext";
+import { DataContext } from "../../contexts/dataContext";
 import { IconAlertCircle, IconFingerprint } from "@tabler/icons-react";
 import { makeRequest } from "../../utils/axiosHelper";
 
 // The Register component
 function Register() {
-  // Get the current user from the AuthContext
-  const { userData } = useContext(AuthContext);
+  // Get the current user from the DataContext
+  const { userData } = useContext(DataContext);
   // Initialize state to keep track of any errors
   const [error, setError] = useState("");
   // Get the navigate function from the react-router-dom

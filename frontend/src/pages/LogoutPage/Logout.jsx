@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { makeRequest } from "../../utils/axiosHelper";
-import { AuthContext } from "../../contexts/authContext";
+import { DataContext } from "../../contexts/dataContext";
 
 const Logout = () => {
-  // Retrieve the setUserData function from the AuthContext
-  const { setUserData } = useContext(AuthContext);
+  // Retrieve the setUserData function from the DataContext
+  const { setUserData } = useContext(DataContext);
 
   useEffect(() => {
     // Define a function to handle the logout process
@@ -20,13 +20,16 @@ const Logout = () => {
 
       // Clear the access token and user data from local storage
       localStorage.removeItem("accessToken");
-      localStorage.removeItem("user");
+      localStorage.removeItem("userData");
+      localStorage.removeItem("cameras");
+      localStorage.removeItem("cameraInfo");
+      localStorage.removeItem("timestamp");
 
       // Clear any cookies (if you have any)
       document.cookie =
         "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-      // Update the AuthContext to indicate that the user is logged out
+      // Update the DataContext to indicate that the user is logged out
       setUserData(null);
     };
 

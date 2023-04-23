@@ -1,7 +1,7 @@
 import { Navbar, Divider, Button } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { IconVideo, IconCamera, IconLogout } from "@tabler/icons-react";
-import { AuthContext } from "../../contexts/authContext";
+import { DataContext } from "../../contexts/dataContext";
 import { useContext } from "react";
 import {
   alertNotification,
@@ -9,8 +9,7 @@ import {
 } from "../../helpers/notifications";
 
 const LeftNavbar = ({ opened, setOpened }) => {
-  const { userData } = useContext(AuthContext);
-  const { user, cameras } = userData || {};
+  const { userData, cameras } = useContext(DataContext);
 
   return (
     <Navbar
@@ -85,7 +84,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
             to="/logout"
             onClick={() => setOpened((o) => !o)}
           >
-            {user.username}
+            {userData.username}
           </Button>
         </Navbar.Section>
       </div>

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { MantineProvider, createEmotionCache } from "@mantine/core";
-import { AuthContextProvider } from "./contexts/authContext";
+import { DataContextProvider } from "./contexts/dataContext";
 import { ThemeProvider } from "./contexts/themeContext";
 import { Notifications } from "@mantine/notifications";
 
@@ -11,7 +11,7 @@ const appendCache = createEmotionCache({ key: "mantine", prepend: false });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider>
-    <AuthContextProvider>
+    <DataContextProvider>
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
@@ -30,6 +30,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Notifications />
         <App />
       </MantineProvider>
-    </AuthContextProvider>
+    </DataContextProvider>
   </ThemeProvider>,
 );
