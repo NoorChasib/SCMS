@@ -5,9 +5,8 @@ import { format, addSeconds } from "date-fns";
 
 const VideoPlayer = ({ src, type }) => {
   const videoRef = useRef(null);
-  const [localTime, setLocalTime] = useState(new Date()); // Initialize localTime with the current time
+  const [localTime, setLocalTime] = useState(new Date());
 
-  // Format local time
   const formattedLocalTime = () =>
     format(localTime, "MMM dd yyyy - hh:mm:ss a");
 
@@ -31,8 +30,24 @@ const VideoPlayer = ({ src, type }) => {
 
     player.src([{ src, type }]);
 
+    // Load the saved playback time from local storage and set it
+    const savedTime = localStorage.getItem("videoPlaybackTime");
+    if (savedTime) {
+      player.currentTime(parseFloat(savedTime));
+    }
+
+    // Save the playback time to local storage before the page unloads
+    const handleBeforeUnload = () => {
+      localStorage.setItem("videoPlaybackTime", player.currentTime());
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
+      // Save the playback time to local storage when the component unmounts
+      localStorage.setItem("videoPlaybackTime", player.currentTime());
       player.dispose();
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [src, type]);
 
