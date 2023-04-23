@@ -12,7 +12,7 @@ export const DataContextProvider = ({ children }) => {
     () => JSON.parse(localStorage.getItem("userData")) || null,
   );
   const [cameras, setCameras] = useState(
-    () => JSON.parse(localStorage.getItem("cameras")) || [],
+    () => JSON.parse(localStorage.getItem("cameras")) || null,
   );
   const [cameraInfo, setCameraInfo] = useState(
     () => JSON.parse(localStorage.getItem("cameraInfo")) || null,
