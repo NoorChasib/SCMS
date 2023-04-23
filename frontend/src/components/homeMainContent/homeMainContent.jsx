@@ -1,25 +1,24 @@
-import { Grid, Skeleton, Container, Box, Title, Text } from "@mantine/core";
+import { Grid, Container, Box, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/authContext";
+import { DataContext } from "../../contexts/dataContext";
 import ThemeContext from "../../contexts/themeContext";
 import { useContext } from "react";
 import VideoPlayer from "../homeLiveVideo/homeLiveVideo";
 
 const HomeMainContent = () => {
-  const { userData } = useContext(AuthContext);
-  const { cameras, camera_information } = userData || {};
+  const { cameras, cameraInfo } = useContext(DataContext);
   const { darkMode } = useContext(ThemeContext);
 
   return (
     <Container size="2xl" py="md">
       <Grid grow gutter="xl" gutterMd={50}>
         {cameras &&
-          camera_information &&
+          cameraInfo &&
           cameras.map((camera) => {
-            const cameraInfo = camera_information.find(
+            const currentCameraInfo = cameraInfo.find(
               (info) => info.camera_id === camera.id,
             );
-            const videoUrl = cameraInfo ? cameraInfo.url : "";
+            const videoUrl = currentCameraInfo ? currentCameraInfo.url : "";
 
             return (
               <Grid.Col key={camera.id} lg={5}>

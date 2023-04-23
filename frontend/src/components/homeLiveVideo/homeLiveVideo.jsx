@@ -1,13 +1,19 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
+import { format, addSeconds } from "date-fns";
 
 const VideoPlayer = ({ src, type }) => {
   const videoRef = useRef(null);
+  const [localTime, setLocalTime] = useState(new Date()); // Initialize localTime with the current time
+
+  // Format local time
+  const formattedLocalTime = () =>
+    format(localTime, "MMM dd yyyy - hh:mm:ss a");
 
   useEffect(() => {
     const player = videojs(videoRef.current, {
-      controls: true,
+      controls: false,
       autoplay: "muted",
       preload: "true",
       fluid: true,
@@ -30,9 +36,22 @@ const VideoPlayer = ({ src, type }) => {
     };
   }, [src, type]);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setLocalTime((prevTime) => addSeconds(prevTime, 1));
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
   return (
-    <div data-vjs-player>
+    <div data-vjs-player className="relative">
       <video ref={videoRef} className="video-js vjs-big-play-centered" />
+      <div className="absolute bottom-2 left-2 rounded bg-gray-800 bg-opacity-60 px-2 py-1 text-sm text-white">
+        {formattedLocalTime()}
+      </div>
     </div>
   );
 };
