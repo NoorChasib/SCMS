@@ -12,6 +12,7 @@ import landingRoute from "./src/routes/landing/landingRoute.js";
 import registerRoute from "./src/routes/auth/registerRoute.js";
 import loginRoute from "./src/routes/auth/loginRoute.js";
 import logoutRoute from "./src/routes/auth/logoutRoute.js";
+import getCamerasRoute from "./src/routes/cameras/getCamerasRoute.js";
 
 // Define middleware functions for the application
 app.use((req, res, next) => {
@@ -29,11 +30,16 @@ app.use(
 
 app.use(cookieParser()); // Parse cookies in incoming requests
 
-// Register routes for the application
+// Landing route for the application
 app.use("/", landingRoute); // Register the landing page route
-app.use("/api/", registerRoute); // Register the user registration route
-app.use("/api/", loginRoute); // Register the user login route
-app.use("/api/", logoutRoute); // Register the user logout route
+
+// Auth routes for the application
+app.use("/api/", registerRoute); // User registration route
+app.use("/api/", loginRoute); // User login route
+app.use("/api/", logoutRoute); // User logout route
+
+// Camera routes for the application
+app.use("/api/", getCamerasRoute); // User cameras route
 
 // Start the server on the backendPort defined in the serverConfig object
 app.listen(serverConfig.backendPort, () =>
