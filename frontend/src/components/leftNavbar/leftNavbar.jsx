@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { IconVideo, IconCamera, IconLogout } from "@tabler/icons-react";
 import { AuthContext } from "../../contexts/authContext";
 import { useContext } from "react";
+import {
+  alertNotification,
+  offlineNotification,
+} from "../../helpers/notifications";
 
 const LeftNavbar = ({ opened, setOpened }) => {
   const { userData } = useContext(AuthContext);
@@ -54,6 +58,18 @@ const LeftNavbar = ({ opened, setOpened }) => {
               </Button>
             </Navbar.Section>
           ))}
+
+        <Navbar.Section>
+          <Button variant="outline" onClick={alertNotification}>
+            Show notification
+          </Button>
+        </Navbar.Section>
+
+        <Navbar.Section>
+          <Button variant="outline" onClick={offlineNotification}>
+            Show notification
+          </Button>
+        </Navbar.Section>
 
         {/* Bottom Navbar */}
         <Navbar.Section className="absolute bottom-5 w-full pr-8">
