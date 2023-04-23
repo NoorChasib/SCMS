@@ -142,7 +142,7 @@ function Register() {
             withCloseButton
             onClose={() => setError(false)}
           >
-            Please check the form for errors
+            There was an error creating your account. This username or email may already be taken.
           </Alert>
         )}
       </Container>

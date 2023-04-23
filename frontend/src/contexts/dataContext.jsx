@@ -18,18 +18,12 @@ export const DataContextProvider = ({ children }) => {
     () => JSON.parse(localStorage.getItem("cameraInfo")) || null,
   );
 
-  // Modify the login function to return a boolean indicating success
+  // Define a function to handle user login
   const login = async (inputs) => {
-    try {
-      // Send a request to the server to login the user
-      const res = await makeRequest.post("/login", inputs);
-      // Update the user data state with the response data
-      setUserData(res.data);
-      return true; // login was successful
-    } catch (error) {
-      console.error("Login failed:", error);
-      return false; // login failed
-    }
+    // Send a request to the server to login the user
+    const res = await makeRequest.post("/login", inputs);
+    // Update the user data state with the response data
+    setUserData(res.data);
   };
 
   // Define a function to fetch cameras

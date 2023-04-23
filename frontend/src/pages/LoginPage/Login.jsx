@@ -129,7 +129,8 @@ function Login() {
             withCloseButton
             onClose={() => setError(false)}
           >
-            Please check your username and password
+            There was an error logging in to your account. Please check the
+            username or email.
           </Alert>
         )}
       </Container>
