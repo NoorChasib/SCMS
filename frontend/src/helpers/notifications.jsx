@@ -1,6 +1,6 @@
 import { IconAlertCircle } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
-import chimeSound from "/chime.mp3";
+import chimeSound from "/sounds/chime.mp3";
 
 const chime = new Audio(chimeSound);
 
