@@ -9,10 +9,12 @@ import {
 import { Link, useLocation, useParams } from "react-router-dom";
 import { IconFingerprint, IconSun, IconMoonStars } from "@tabler/icons-react";
 import { AuthContext } from "../../contexts/authContext";
+import ThemeContext from "../../contexts/themeContext";
 import { useContext } from "react";
 
-const TopHeader = ({ opened, setOpened, darkMode, setDarkMode }) => {
+const TopHeader = ({ opened, setOpened }) => {
   const { userData } = useContext(AuthContext);
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const { cameras } = userData || {};
   const location = useLocation();
   const { id } = useParams();

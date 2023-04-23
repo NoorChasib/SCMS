@@ -5,6 +5,7 @@ import "./index.css";
 import { MantineProvider, createEmotionCache } from "@mantine/core";
 import { AuthContextProvider } from "./contexts/authContext";
 import { ThemeProvider } from "./contexts/themeContext";
+import { Notifications } from "@mantine/notifications";
 
 const appendCache = createEmotionCache({ key: "mantine", prepend: false });
 
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         }}
         emotionCache={appendCache}
       >
+        <Notifications />
         <App />
       </MantineProvider>
     </AuthContextProvider>
