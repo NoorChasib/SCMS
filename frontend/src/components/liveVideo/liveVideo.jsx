@@ -12,7 +12,7 @@ const LiveVideoPlayer = ({ src, type }) => {
 
   useEffect(() => {
     const player = videojs(videoRef.current, {
-      controls: true,
+      controls: false,
       autoplay: "muted",
       preload: "true",
       fluid: true,

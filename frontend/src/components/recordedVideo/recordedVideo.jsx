@@ -3,9 +3,11 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import { format, addSeconds } from "date-fns";
 
-const RecordedVideoPlayer = ({ src, type }) => {
+const RecordedVideoPlayer = ({ src, type, startTimeOffset }) => {
   const videoRef = useRef(null);
-  const [localTime, setLocalTime] = useState(new Date());
+  const [localTime, setLocalTime] = useState(
+    addSeconds(new Date(), -startTimeOffset),
+  );
 
   const formattedLocalTime = () =>
     format(localTime, "MMM dd yyyy - hh:mm:ss a");
@@ -16,7 +18,7 @@ const RecordedVideoPlayer = ({ src, type }) => {
       autoplay: "muted",
       preload: "true",
       fluid: true,
-      loop: true,
+      loop: false,
       liveui: true,
       html5: {
         hls: {
@@ -30,20 +32,19 @@ const RecordedVideoPlayer = ({ src, type }) => {
 
     player.src([{ src, type }]);
 
+    const updateTime = () => {
+      setLocalTime((prevTime) =>
+        addSeconds(new Date(), player.currentTime() - startTimeOffset),
+      );
+    };
+
+    player.on("timeupdate", updateTime);
+
     return () => {
+      player.off("timeupdate", updateTime);
       player.dispose();
     };
-  }, [src, type]);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setLocalTime((prevTime) => addSeconds(prevTime, 1));
-    }, 1000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+  }, [src, type, startTimeOffset]);
 
   return (
     <div data-vjs-player className="relative">

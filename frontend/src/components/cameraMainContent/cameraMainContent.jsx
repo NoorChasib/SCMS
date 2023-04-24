@@ -52,6 +52,7 @@ const CameraMainContent = () => {
                 key={videoUrl}
                 src={videoUrl}
                 type="application/x-mpegURL"
+                startTimeOffset={2400}
               />
             ))}
         </Grid.Col>
