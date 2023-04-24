@@ -14,6 +14,9 @@ import loginRoute from "./src/routes/auth/loginRoute.js";
 import logoutRoute from "./src/routes/auth/logoutRoute.js";
 import getCamerasRoute from "./src/routes/cameras/getCamerasRoute.js";
 import getCameraInfoRoute from "./src/routes/cameras/getCameraInfoRoute.js";
+import getAlertsRoute from "./src/routes/alerts/getAlertsRoute.js";
+import postAlertRoute from "./src/routes/alerts/postAlertRoute.js";
+import putAlertRoute from "./src/routes/alerts/putAlertRoute.js";
 
 // Define middleware functions for the application
 app.use((req, res, next) => {
@@ -42,6 +45,11 @@ app.use("/api/", logoutRoute); // User logout route
 // Camera routes for the application
 app.use("/api/", getCamerasRoute); // User cameras route
 app.use("/api/", getCameraInfoRoute); // User camera info route
+
+// Alerts routes for the application
+app.use("/api/", getAlertsRoute);
+app.use("/api/", postAlertRoute);
+app.use("/api/", putAlertRoute);
 
 // Start the server on the backendPort defined in the serverConfig object
 app.listen(serverConfig.backendPort, () =>
