@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import {
   Avatar,
+  Box,
   Container,
   Group,
   ScrollArea,
   Select,
   Text,
-  UnstyledButton,
 } from "@mantine/core";
 import ThemeContext from "../../contexts/themeContext";
 import { IconAlertCircle } from "@tabler/icons-react";
@@ -17,10 +17,10 @@ import { format } from "date-fns";
 const AlertContent = () => {
   const { darkMode } = useContext(ThemeContext);
   const { allAlerts } = useContext(DataContext);
+  const { id } = useParams();
   const [selectedAlertType, setSelectedAlertType] = useState("all");
-  const { id } = useParams(); // Get cameraId from URL path
 
-  const data = [
+  const selectData = [
     { value: "all", label: "All Alerts" },
     { value: "intruder", label: "Intruders" },
     { value: "offline", label: "Offline" },
@@ -47,7 +47,7 @@ const AlertContent = () => {
     <Container size="2xl" py="xs" className="rounded-lg border">
       <Select
         dropdownPosition="bottom"
-        data={data}
+        data={selectData}
         defaultValue="all"
         variant="unstyled"
         mb="xs"
@@ -68,16 +68,11 @@ const AlertContent = () => {
         {filteredAlerts.map((alert) => (
           <div
             key={alert.id}
-            className={`m-2 flex rounded-lg hover:shadow-lg ${
+            className={`m-2 flex rounded-lg hover:shadow-sm ${
               darkMode ? "hover:shadow-gray-700" : "hover:shadow-gray-200"
             }`}
           >
-            <UnstyledButton
-              variant="link"
-              color="blue"
-              m="xs"
-              className="max-w-100 w-full"
-            >
+            <Box m="xs" className="max-w-100 w-full cursor-default">
               <Group>
                 <Avatar size={40} color="red">
                   {alert.alert_type.toUpperCase().slice(0, 3)}
@@ -86,7 +81,7 @@ const AlertContent = () => {
                   {formatAlertTime(alert.start_time)}
                 </Text>
               </Group>
-            </UnstyledButton>
+            </Box>
           </div>
         ))}
       </ScrollArea>
