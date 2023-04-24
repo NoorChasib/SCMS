@@ -33,7 +33,7 @@ const LiveVideoPlayer = ({ src, type }) => {
     // Load the saved playback time from local storage and set it
     const savedTime = localStorage.getItem("videoPlaybackTime");
     if (savedTime) {
-      player.currentTime(parseFloat(savedTime));
+      player.currentTime(parseFloat(savedTime) || 1170);
     }
 
     // Save the playback time to local storage before the page unloads
