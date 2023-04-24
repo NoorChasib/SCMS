@@ -1,9 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Container, ScrollArea, Select } from "@mantine/core";
+import { Box, Container, Select } from "@mantine/core";
 import ThemeContext from "../../contexts/themeContext";
 import { IconChartBar } from "@tabler/icons-react";
 import { useParams } from "react-router-dom";
 import { DataContext } from "../../contexts/dataContext";
+import { Pie } from "react-chartjs-2";
+import { Chart } from "chart.js";
+import { ArcElement, PieController, Tooltip, Legend } from "chart.js";
+
+Chart.register(ArcElement, PieController, Tooltip, Legend);
 
 const GraphContent = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -21,10 +26,50 @@ const GraphContent = () => {
   ];
 
   const filteredAlerts = allAlerts.filter(
-    (alert) =>
-      alert.camera_id === parseInt(id) &&
-      (selectedGraphType === "all" || alert.alert_type === selectedGraphType),
+    (alert) => alert.camera_id === parseInt(id),
   );
+
+  const generateChartData = () => {
+    const filteredData = filteredAlerts.filter((alert) => {
+      if (selectedGraphType === "all") return true;
+
+      const alertTime = new Date(alert.start_time + "Z");
+      const currentTime = new Date();
+      const timeDifference = currentTime - alertTime;
+
+      const timeFilterMap = {
+        "5min": 5 * 60 * 1000,
+        "10min": 10 * 60 * 1000,
+        "30min": 30 * 60 * 1000,
+        "1hour": 60 * 60 * 1000,
+        "1day": 24 * 60 * 60 * 1000,
+      };
+      return timeDifference <= timeFilterMap[selectedGraphType];
+    });
+
+    const intruderCount = filteredData.filter(
+      (alert) => alert.alert_type === "intruder",
+    ).length;
+
+    const offlineCount = filteredData.filter(
+      (alert) => alert.alert_type === "offline",
+    ).length;
+
+    return {
+      labels: ["Intruder", "Offline"],
+      datasets: [
+        {
+          data: [intruderCount, offlineCount],
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+          ],
+          borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+          borderWidth: 1,
+        },
+      ],
+    };
+  };
 
   const handleGraphTypeChange = (value) => {
     setSelectedGraphType(value);
@@ -51,13 +96,20 @@ const GraphContent = () => {
           },
         })}
       />
-      <ScrollArea h={250} type="never">
-        <div
-          className={`m-2 flex rounded-lg hover:shadow-lg ${
-            darkMode ? "hover:shadow-gray-700" : "hover:shadow-gray-200"
-          }`}
-        ></div>
-      </ScrollArea>
+      <Box
+        h={300}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        <Pie
+          data={generateChartData()}
+          options={{ responsive: true, maintainAspectRatio: true }}
+        />
+      </Box>
     </Container>
   );
 };
