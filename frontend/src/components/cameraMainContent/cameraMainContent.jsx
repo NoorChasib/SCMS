@@ -1,18 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Grid,
-  Skeleton,
-  Container,
-  ActionIcon,
-  Text,
-  Group,
-} from "@mantine/core";
+import { Grid, Container, ActionIcon, Text, Group } from "@mantine/core";
 import { DataContext } from "../../contexts/dataContext";
 import LiveVideoPlayer from "../liveVideo/liveVideo";
 import RecordedVideoPlayer from "../recordedVideo/recordedVideo";
 import ThemeContext from "../../contexts/themeContext";
 import { IconLivePhoto, IconLivePhotoOff } from "@tabler/icons-react";
+import AlertContent from "../alertContent/alertContent";
+import GraphContent from "../graphContent/graphContent";
 
 const CameraMainContent = () => {
   const { cameras, cameraInfo } = useContext(DataContext);
@@ -66,10 +61,10 @@ const CameraMainContent = () => {
             ))}
         </Grid.Col>
         <Grid.Col md={6} lg={6}>
-          <Skeleton height={450} radius="lg" />
+          <AlertContent />
         </Grid.Col>
         <Grid.Col md={6} lg={6}>
-          <Skeleton height={450} radius="lg" />
+          <GraphContent />
         </Grid.Col>
       </Grid>
     </Container>
