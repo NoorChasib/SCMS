@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { postLogin } from "../helpers/http/postLogin";
 import { getCameras } from "../helpers/http/getCameras";
 import { getCameraInfo } from "../helpers/http/getCameraInfo";
-import { getAllAlerts, getAlertsByCamera } from "../helpers/http/getAlerts";
+import { getAllAlerts } from "../helpers/http/getAlerts";
 import { postAlert } from "../helpers/http/postAlert";
 import { putAlert } from "../helpers/http/putAlert";
 
@@ -22,9 +22,6 @@ export const DataContextProvider = ({ children }) => {
   const [allAlerts, setAllAlerts] = useState(
     () => JSON.parse(localStorage.getItem("allAlerts")) || null,
   );
-  const [alertsByCamera, setAlertsByCamera] = useState(
-    () => JSON.parse(localStorage.getItem("alertsByCamera")) || null,
-  );
 
   const login = async (inputs) => {
     await postLogin(inputs, setUserData);
@@ -40,10 +37,6 @@ export const DataContextProvider = ({ children }) => {
 
   const fetchAllAlerts = async () => {
     await getAllAlerts(setAllAlerts);
-  };
-
-  const fetchAlertsByCamera = async (camera_id) => {
-    await getAlertsByCamera(camera_id, setAlertsByCamera);
   };
 
   useEffect(() => {
@@ -70,10 +63,6 @@ export const DataContextProvider = ({ children }) => {
     localStorage.setItem("allAlerts", JSON.stringify(allAlerts));
   }, [allAlerts]);
 
-  useEffect(() => {
-    localStorage.setItem("alertsByCamera", JSON.stringify(alertsByCamera));
-  }, [alertsByCamera]);
-
   return (
     <DataContext.Provider
       value={{
@@ -83,8 +72,6 @@ export const DataContextProvider = ({ children }) => {
         cameras,
         cameraInfo,
         allAlerts,
-        fetchAlertsByCamera,
-        alertsByCamera,
         postAlert,
         putAlert,
       }}

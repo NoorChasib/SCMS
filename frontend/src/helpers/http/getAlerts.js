@@ -9,13 +9,3 @@ export const getAllAlerts = async (setAllAlerts) => {
     throw new Error("An error occurred while fetching all alerts.");
   }
 };
-
-export const getAlertsByCamera = async (camera_id, setAlertsByCamera) => {
-  try {
-    const response = await makeRequest.get(`/alerts/${camera_id}`);
-    const alerts = response.data.alerts;
-    setAlertsByCamera(alerts);
-  } catch (error) {
-    throw new Error("An error occurred while fetching alerts by camera.");
-  }
-};
