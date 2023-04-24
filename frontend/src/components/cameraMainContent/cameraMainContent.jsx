@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Grid, Skeleton, Container } from "@mantine/core";
 import { DataContext } from "../../contexts/dataContext";
-import VideoPlayer from "../liveVideo/liveVideo";
+import LiveVideoPlayer from "../liveVideo/liveVideo";
 
 const CameraMainContent = () => {
   const { cameras, cameraInfo } = useContext(DataContext);
@@ -20,7 +20,7 @@ const CameraMainContent = () => {
       <Grid grow gutter="xl" gutterMd={50}>
         <Grid.Col md={10} lg={10}>
           {camera && (
-            <VideoPlayer
+            <LiveVideoPlayer
               key={videoUrl}
               src={videoUrl}
               type="application/x-mpegURL"

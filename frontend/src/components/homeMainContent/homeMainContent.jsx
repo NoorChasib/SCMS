@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { DataContext } from "../../contexts/dataContext";
 import ThemeContext from "../../contexts/themeContext";
 import { useContext } from "react";
-import VideoPlayer from "../liveVideo/liveVideo";
+import LiveVideoPlayer from "../liveVideo/liveVideo";
 
 const HomeMainContent = () => {
   const { cameras, cameraInfo } = useContext(DataContext);
@@ -33,7 +33,10 @@ const HomeMainContent = () => {
                         : "hover:shadow-gray-400"
                     }`}
                   >
-                    <VideoPlayer src={videoUrl} type="application/x-mpegURL" />
+                    <LiveVideoPlayer
+                      src={videoUrl}
+                      type="application/x-mpegURL"
+                    />
                   </Box>
                 </Link>
               </Grid.Col>

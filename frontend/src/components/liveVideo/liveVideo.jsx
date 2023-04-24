@@ -3,7 +3,7 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import { format, addSeconds } from "date-fns";
 
-const VideoPlayer = ({ src, type }) => {
+const LiveVideoPlayer = ({ src, type }) => {
   const videoRef = useRef(null);
   const [localTime, setLocalTime] = useState(new Date());
 
@@ -73,4 +73,4 @@ const VideoPlayer = ({ src, type }) => {
   );
 };
 
-export default VideoPlayer;
+export default LiveVideoPlayer;
