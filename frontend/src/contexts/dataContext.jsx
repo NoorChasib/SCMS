@@ -3,6 +3,9 @@ import { createContext, useEffect, useState } from "react";
 import { postLogin } from "../helpers/http/postLogin";
 import { getCameras } from "../helpers/http/getCameras";
 import { getCameraInfo } from "../helpers/http/getCameraInfo";
+import { getAllAlerts, getAlertsByCamera } from "../helpers/http/getAlerts";
+import { postAlert } from "../helpers/http/postAlert";
+import { putAlert } from "../helpers/http/putAlert";
 
 export const DataContext = createContext();
 
@@ -15,6 +18,12 @@ export const DataContextProvider = ({ children }) => {
   );
   const [cameraInfo, setCameraInfo] = useState(
     () => JSON.parse(localStorage.getItem("cameraInfo")) || null,
+  );
+  const [allAlerts, setAllAlerts] = useState(
+    () => JSON.parse(localStorage.getItem("allAlerts")) || null,
+  );
+  const [alertsByCamera, setAlertsByCamera] = useState(
+    () => JSON.parse(localStorage.getItem("alertsByCamera")) || null,
   );
 
   const login = async (inputs) => {
@@ -29,10 +38,19 @@ export const DataContextProvider = ({ children }) => {
     await getCameraInfo(setCameraInfo);
   };
 
+  const fetchAllAlerts = async () => {
+    await getAllAlerts(setAllAlerts);
+  };
+
+  const fetchAlertsByCamera = async (camera_id) => {
+    await getAlertsByCamera(camera_id, setAlertsByCamera);
+  };
+
   useEffect(() => {
     if (userData) {
       fetchCameras();
       fetchCameraInfo();
+      fetchAllAlerts();
     }
   }, [userData]);
 
@@ -48,9 +66,28 @@ export const DataContextProvider = ({ children }) => {
     localStorage.setItem("cameraInfo", JSON.stringify(cameraInfo));
   }, [cameraInfo]);
 
+  useEffect(() => {
+    localStorage.setItem("allAlerts", JSON.stringify(allAlerts));
+  }, [allAlerts]);
+
+  useEffect(() => {
+    localStorage.setItem("alertsByCamera", JSON.stringify(alertsByCamera));
+  }, [alertsByCamera]);
+
   return (
     <DataContext.Provider
-      value={{ userData, login, setUserData, cameras, cameraInfo }}
+      value={{
+        userData,
+        login,
+        setUserData,
+        cameras,
+        cameraInfo,
+        allAlerts,
+        fetchAlertsByCamera,
+        alertsByCamera,
+        postAlert,
+        putAlert,
+      }}
     >
       {children}
     </DataContext.Provider>

@@ -24,6 +24,8 @@ const Logout = () => {
       localStorage.removeItem("cameras");
       localStorage.removeItem("cameraInfo");
       localStorage.removeItem("timestamp");
+      localStorage.removeItem("alertsByCamera");
+      localStorage.removeItem("allAlerts");
 
       // Clear any cookies (if you have any)
       document.cookie =
