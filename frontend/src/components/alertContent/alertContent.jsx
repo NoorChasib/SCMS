@@ -12,7 +12,8 @@ import ThemeContext from "../../contexts/themeContext";
 import { IconAlertCircle } from "@tabler/icons-react";
 import { DataContext } from "../../contexts/dataContext";
 import { useParams } from "react-router-dom";
-import { format } from "date-fns";
+import { format, utcToZonedTime } from "date-fns-tz";
+import { parseISO } from "date-fns";
 
 const AlertContent = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -31,7 +32,11 @@ const AlertContent = () => {
   };
 
   const formatAlertTime = (alertTime) => {
-    return format(new Date(alertTime), "MMM d yyyy - hh:mm:ss a");
+    const utcTimeString = alertTime + "Z";
+    const utcTime = new Date(utcTimeString);
+    const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const localTime = utcToZonedTime(utcTime, localTimeZone);
+    return format(localTime, "MMM d yyyy - hh:mm:ss aa");
   };
 
   // Filter alerts by cameraId and selected alert type, and reverse the order
@@ -64,7 +69,7 @@ const AlertContent = () => {
           },
         })}
       />
-      <ScrollArea h={250} type="never">
+      <ScrollArea h={300} type="never">
         {filteredAlerts.map((alert) => (
           <div
             key={alert.id}
