@@ -50,7 +50,7 @@ const TopHeader = ({ opened, setOpened }) => {
           </Group>
         </Link>
 
-        <Text className="flex-1 text-center font-bold sm:mr-12 sm:pr-7">
+        <Text className="flex-1 text-center font-bold sm:mr-12 sm:pr-6">
           {displayText}
         </Text>
 
