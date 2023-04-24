@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { DataContext } from "../../contexts/dataContext";
 import ThemeContext from "../../contexts/themeContext";
 import { useContext } from "react";
-import VideoPlayer from "../homeLiveVideo/homeLiveVideo";
+import VideoPlayer from "../liveVideo/liveVideo";
 
 const HomeMainContent = () => {
   const { cameras, cameraInfo } = useContext(DataContext);

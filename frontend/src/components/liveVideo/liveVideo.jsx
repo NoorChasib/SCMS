@@ -12,7 +12,7 @@ const VideoPlayer = ({ src, type }) => {
 
   useEffect(() => {
     const player = videojs(videoRef.current, {
-      controls: false,
+      controls: true,
       autoplay: "muted",
       preload: "true",
       fluid: true,
