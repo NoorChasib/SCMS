@@ -1,6 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Grid, Skeleton, Container, ActionIcon, Text } from "@mantine/core";
+import {
+  Grid,
+  Skeleton,
+  Container,
+  ActionIcon,
+  Text,
+  Group,
+} from "@mantine/core";
 import { DataContext } from "../../contexts/dataContext";
 import LiveVideoPlayer from "../liveVideo/liveVideo";
 import RecordedVideoPlayer from "../recordedVideo/recordedVideo";
@@ -22,22 +29,24 @@ const CameraMainContent = () => {
 
   return (
     <Container size="2xl" py="md">
-      <ActionIcon
-        color="red"
-        size="lg"
-        radius="xl"
-        variant="transparent"
-        onClick={() => setRecorded((r) => !r)}
-      >
-        {recorded ? (
-          <IconLivePhoto size={30} />
-        ) : (
-          <IconLivePhotoOff size={30} />
-        )}
-      </ActionIcon>
-      <Text c={darkMode ? "white" : "black"} fw={700} ta="center">
-        {recorded ? "🔴 Live" : "🔵 Pre-Recorded"}
-      </Text>
+      <Group position="left" spacing="xs">
+        <ActionIcon
+          color={recorded ? "red" : "blue"}
+          size="lg"
+          radius="xl"
+          variant="subtle"
+          onClick={() => setRecorded((r) => !r)}
+        >
+          {recorded ? (
+            <IconLivePhoto size={30} />
+          ) : (
+            <IconLivePhotoOff size={30} />
+          )}
+        </ActionIcon>
+        <Text c={darkMode ? "white" : "black"} fw={700} ta="center">
+          {recorded ? "Live" : "Pre-Recorded"}
+        </Text>
+      </Group>
       <Grid grow gutter="xl" gutterMd={50}>
         <Grid.Col md={10} lg={10}>
           {camera &&
