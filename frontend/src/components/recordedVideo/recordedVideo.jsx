@@ -34,7 +34,11 @@ const RecordedVideoPlayer = ({ src, type, startTimeOffset }) => {
 
     const updateTime = () => {
       setLocalTime((prevTime) =>
-        addSeconds(new Date(), player.currentTime() - startTimeOffset),
+        addSeconds(
+          new Date(),
+          player.currentTime() -
+            (isFinite(startTimeOffset) ? startTimeOffset : 0),
+        ),
       );
     };
 

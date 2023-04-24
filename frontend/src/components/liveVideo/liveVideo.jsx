@@ -38,7 +38,9 @@ const LiveVideoPlayer = ({ src, type }) => {
 
     // Save the playback time to local storage before the page unloads
     const handleBeforeUnload = () => {
-      const loopedTime = player.currentTime() % player.duration();
+      const loopedTime = isFinite(player.duration())
+        ? player.currentTime() % player.duration()
+        : player.currentTime();
       localStorage.setItem("videoPlaybackTime", loopedTime);
     };
 
@@ -46,7 +48,9 @@ const LiveVideoPlayer = ({ src, type }) => {
 
     return () => {
       // Save the playback time to local storage when the component unmounts
-      const loopedTime = player.currentTime() % player.duration();
+      const loopedTime = isFinite(player.duration())
+        ? player.currentTime() % player.duration()
+        : player.currentTime();
       localStorage.setItem("videoPlaybackTime", loopedTime);
       player.dispose();
       window.removeEventListener("beforeunload", handleBeforeUnload);
