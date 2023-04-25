@@ -7,9 +7,12 @@ import { getAllAlerts } from "../helpers/http/getAlerts";
 import { postAlert } from "../helpers/http/postAlert";
 import { putAlert } from "../helpers/http/putAlert";
 
+// Create a new context object for data sharing
 export const DataContext = createContext();
 
+// Define the data context provider component
 export const DataContextProvider = ({ children }) => {
+  // Set up state variables for user data, camera data, camera info, and alerts
   const [userData, setUserData] = useState(
     () => JSON.parse(localStorage.getItem("userData")) || null,
   );
@@ -23,6 +26,7 @@ export const DataContextProvider = ({ children }) => {
     () => JSON.parse(localStorage.getItem("allAlerts")) || null,
   );
 
+  // Define functions for user login, camera data fetching, camera info fetching, and alert fetching
   const login = async (inputs) => {
     await postLogin(inputs, setUserData);
   };
@@ -39,15 +43,18 @@ export const DataContextProvider = ({ children }) => {
     await getAllAlerts(setAllAlerts);
   };
 
+  // Define a function for adding a new alert to the list of alerts
   const addAlert = (newAlert) => {
     setAllAlerts((prevAlerts) => [...prevAlerts, newAlert]);
   };
 
+  // Define a function for adding an input alert to the list of alerts
   const inputAlert = async (camera_id, alertData) => {
     const newAlert = await postAlert(camera_id, alertData);
     addAlert(newAlert);
   };
 
+  // Use effects to fetch data and update local storage when state variables change
   useEffect(() => {
     if (userData) {
       fetchCameras();
@@ -72,6 +79,7 @@ export const DataContextProvider = ({ children }) => {
     localStorage.setItem("allAlerts", JSON.stringify(allAlerts));
   }, [allAlerts]);
 
+  // Render the data context provider component with the appropriate values
   return (
     <DataContext.Provider
       value={{

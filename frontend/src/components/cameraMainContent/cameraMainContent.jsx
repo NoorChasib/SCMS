@@ -1,3 +1,4 @@
+// Import necessary modules and packages
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Grid, Container, ActionIcon, Text, Group } from "@mantine/core";
@@ -9,17 +10,24 @@ import { IconLivePhoto, IconLivePhotoOff } from "@tabler/icons-react";
 import AlertContent from "../alertContent/alertContent";
 import GraphContent from "../graphContent/graphContent";
 
+// This component is used to display the main content of a specific camera, including a video player, alerts, and graphs.
 const CameraMainContent = () => {
+  // Access the cameras, cameraInfo, and fetchAllAlerts function from the DataContext, and the camera ID from the URL.
   const { cameras, cameraInfo, fetchAllAlerts } = useContext(DataContext);
-  const { id } = useParams(); // Get the camera id from the URL
-  const { darkMode } = useContext(ThemeContext);
-  const [recorded, setRecorded] = useState(true); // Whether the video is live or recorded
+  const { id } = useParams();
 
+  // Access the current theme mode.
+  const { darkMode } = useContext(ThemeContext);
+
+  // Determine whether the video is live or recorded, and set the default to recorded.
+  const [recorded, setRecorded] = useState(true);
+
+  // Fetch all alerts when the component is first mounted.
   useEffect(() => {
     fetchAllAlerts();
   }, []);
 
-  // Find the corresponding camera and cameraInfo
+  // Find the corresponding camera and cameraInfo, and get the video URL and camera name.
   const camera = cameras && cameras.find((cam) => cam.id === parseInt(id));
   const currentCameraInfo = cameraInfo.find(
     (info) => info.camera_id === parseInt(id),
@@ -27,8 +35,10 @@ const CameraMainContent = () => {
   const videoUrl = currentCameraInfo ? currentCameraInfo.url : "";
   const cameraName = camera ? camera.name : "";
 
+  // Render the component.
   return (
     <Container size="2xl" py="md">
+      {/* Display an ActionIcon component and Text component to toggle between live and recorded video. */}
       <Group position="left" spacing="xs">
         <ActionIcon
           color={recorded ? "red" : "blue"}
@@ -47,6 +57,7 @@ const CameraMainContent = () => {
           {recorded ? "Live" : "Pre-Recorded"}
         </Text>
       </Group>
+      {/* Display a Grid component containing the video player, alerts, and graphs. */}
       <Grid grow gutter="xl" gutterMd={50}>
         <Grid.Col md={10} lg={10}>
           {camera &&

@@ -1,3 +1,4 @@
+// Import necessary modules and packages
 import {
   Header,
   Text,
@@ -12,13 +13,22 @@ import { DataContext } from "../../contexts/dataContext";
 import ThemeContext from "../../contexts/themeContext";
 import { useContext } from "react";
 
+// Define the TopHeader component
 const TopHeader = ({ opened, setOpened }) => {
+  // Get the cameras data from the data context
   const { cameras } = useContext(DataContext);
+
+  // Get the dark mode state and setter from the theme context
   const { darkMode, setDarkMode } = useContext(ThemeContext);
+
+  // Get the current location and camera id (if applicable)
   const location = useLocation();
   const { id } = useParams();
+
+  // Determine whether the current path is a camera path
   const isCameraPath = location.pathname.startsWith("/camera");
 
+  // Get the display text for the header based on the current location
   const getCameraName = (id) => {
     const camera = cameras.find((camera) => camera.id === parseInt(id));
     return camera ? camera.name : "";
@@ -26,6 +36,7 @@ const TopHeader = ({ opened, setOpened }) => {
 
   const displayText = isCameraPath ? getCameraName(id) : "Overview";
 
+  // Render the top header component
   return (
     <Header height={{ base: 60 }} withBorder={false} fz="lg">
       <div className="flex h-full items-center bg-blue-700 text-white shadow-lg sm:justify-start sm:pl-4">

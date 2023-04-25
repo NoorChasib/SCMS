@@ -1,18 +1,25 @@
+// Import necessary modules and packages
 import React, { useRef, useEffect, useState } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import { format, addSeconds } from "date-fns";
 
+// Define the RecordedVideoPlayer component
 const RecordedVideoPlayer = ({ src, type, startTimeOffset }) => {
+  // Create a reference to the video element
   const videoRef = useRef(null);
+
+  // Define a state variable for the local time
   const [localTime, setLocalTime] = useState(
     addSeconds(new Date(), -startTimeOffset),
   );
 
+  // Define a function to format the local time
   const formattedLocalTime = () =>
     format(localTime, "MMM dd yyyy - hh:mm:ss a");
 
   useEffect(() => {
+    // Initialize the video player
     const player = videojs(videoRef.current, {
       controls: true,
       autoplay: "muted",
@@ -30,8 +37,10 @@ const RecordedVideoPlayer = ({ src, type, startTimeOffset }) => {
       },
     });
 
+    // Set the video source
     player.src([{ src, type }]);
 
+    // Update the local time based on the video playback time
     const updateTime = () => {
       setLocalTime((prevTime) =>
         addSeconds(
@@ -44,12 +53,14 @@ const RecordedVideoPlayer = ({ src, type, startTimeOffset }) => {
 
     player.on("timeupdate", updateTime);
 
+    // Cleanup function to run when the component unmounts
     return () => {
       player.off("timeupdate", updateTime);
       player.dispose();
     };
   }, [src, type, startTimeOffset]);
 
+  // Render the video player and local time display
   return (
     <div data-vjs-player className="relative">
       <video ref={videoRef} className="video-js vjs-big-play-centered" />

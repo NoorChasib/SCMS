@@ -1,3 +1,4 @@
+// Import necessary modules and packages
 import React, { useContext, useEffect, useState } from "react";
 import {
   Avatar,
@@ -14,22 +15,29 @@ import { DataContext } from "../../contexts/dataContext";
 import { useParams } from "react-router-dom";
 import { format, utcToZonedTime } from "date-fns-tz";
 
+// This component is used to display alerts for a specific camera based on the camera ID passed in through the URL.
 const AlertContent = () => {
+  // Access the current theme mode from the ThemeContext and fetch all alerts from the DataContext.
   const { darkMode } = useContext(ThemeContext);
   const { allAlerts, fetchAllAlerts } = useContext(DataContext);
-  const { id } = useParams();
-  const [selectedAlertType, setSelectedAlertType] = useState("all");
 
+  // Access the camera ID passed in through the URL.
+  const { id } = useParams();
+
+  // Set the currently selected alert type and define the different alert types that can be selected.
+  const [selectedAlertType, setSelectedAlertType] = useState("all");
   const selectData = [
     { value: "all", label: "All Alerts" },
     { value: "intruder", label: "Intruders" },
     { value: "offline", label: "Offline" },
   ];
 
+  // This function handles changes to the selected alert type.
   const handleAlertTypeChange = (value) => {
     setSelectedAlertType(value);
   };
 
+  // This function formats alert times to display in the local time zone.
   const formatAlertTime = (alertTime) => {
     const utcTimeString = alertTime + "Z";
     const utcTime = new Date(utcTimeString);
@@ -47,12 +55,15 @@ const AlertContent = () => {
     )
     .reverse();
 
+  // Fetch all alerts when the component is first mounted.
   useEffect(() => {
     fetchAllAlerts();
   }, []);
 
+  // Render the component.
   return (
     <Container size="2xl" py="xs" className="rounded-lg border">
+      {/* Display a Select component for choosing the alert type. */}
       <Select
         dropdownPosition="bottom"
         data={selectData}
@@ -72,6 +83,7 @@ const AlertContent = () => {
           },
         })}
       />
+      {/* Display a ScrollArea component containing the filtered alerts. */}
       <ScrollArea h={300} type="never">
         {filteredAlerts.map((alert) => (
           <div
@@ -80,6 +92,7 @@ const AlertContent = () => {
               darkMode ? "hover:shadow-gray-700" : "hover:shadow-gray-200"
             }`}
           >
+            {/* Display an Avatar component with the first three characters of the alert type as its content, and the formatted alert time. */}
             <Box m="xs" className="max-w-100 w-full cursor-default">
               <Group>
                 <Avatar size={40} color="red">

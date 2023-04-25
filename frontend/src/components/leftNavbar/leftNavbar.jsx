@@ -1,12 +1,16 @@
+// Import necessary modules and packages
 import { Navbar, Divider, Button } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { IconVideo, IconCamera, IconLogout } from "@tabler/icons-react";
 import { DataContext } from "../../contexts/dataContext";
 import { useContext } from "react";
 
+// This component is used to display the left-hand navbar on the home page, including links to all cameras and individual cameras, as well as a logout button.
 const LeftNavbar = ({ opened, setOpened }) => {
+  // Access user data and camera data from the DataContext
   const { userData, cameras } = useContext(DataContext);
 
+  // Render the component
   return (
     <Navbar
       hiddenBreakpoint="sm"
@@ -15,7 +19,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
       width={{ sm: 235, lg: 300 }}
     >
       <div className="h-full bg-blue-700 p-4 text-white">
-        {/* Top Navbar */}
+        {/* Render the top navbar */}
         <Navbar.Section>
           <Button
             leftIcon={<IconCamera />}
@@ -35,7 +39,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
 
         <Divider my="sm" />
 
-        {/* Middle Navbar */}
+        {/* Render the middle navbar with links to each camera */}
         {cameras &&
           cameras.map((camera) => (
             <Navbar.Section key={camera.id} my="xl">
@@ -54,7 +58,7 @@ const LeftNavbar = ({ opened, setOpened }) => {
             </Navbar.Section>
           ))}
 
-        {/* Bottom Navbar */}
+        {/* Render the bottom navbar with the logout button */}
         <Navbar.Section className="absolute bottom-5 w-full pr-8">
           <Button
             leftIcon={<IconLogout />}
