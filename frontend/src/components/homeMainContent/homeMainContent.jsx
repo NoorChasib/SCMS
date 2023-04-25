@@ -37,6 +37,7 @@ const HomeMainContent = () => {
                       src={videoUrl}
                       type="application/x-mpegURL"
                       cameraName={cameraName}
+                      camera_id={camera.id}
                     />
                   </Box>
                 </Link>

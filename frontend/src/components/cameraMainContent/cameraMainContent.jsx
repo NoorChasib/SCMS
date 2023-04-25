@@ -52,6 +52,7 @@ const CameraMainContent = () => {
                 src={videoUrl}
                 type="application/x-mpegURL"
                 cameraName={cameraName}
+                camera_id={id}
               />
             ) : (
               <RecordedVideoPlayer

@@ -9,7 +9,7 @@ import {
   offlineNotificationWithTimeout,
 } from "../../helpers/notifications";
 
-const LiveVideoPlayer = ({ src, type, cameraName }) => {
+const LiveVideoPlayer = ({ src, type, cameraName, camera_id }) => {
   const videoRef = useRef(null);
   const [localTime, setLocalTime] = useState(new Date());
 
@@ -39,12 +39,12 @@ const LiveVideoPlayer = ({ src, type, cameraName }) => {
     // Initialize object detection
     initObjectDetector(videoRef, (predictions) => {
       if (predictions && predictions.length > 0) {
-        alertNotificationWithTimeout(cameraName);
+        alertNotificationWithTimeout(camera_id, cameraName);
       }
 
       const isOffline = checkBlackPixels(videoRef.current, 0.7);
       if (isOffline) {
-        offlineNotificationWithTimeout(cameraName);
+        offlineNotificationWithTimeout(camera_id, cameraName);
       }
     });
 
