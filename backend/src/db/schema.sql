@@ -34,16 +34,14 @@ CREATE TABLE alerts (
   user_id INT NOT NULL,
   camera_id INT NOT NULL,
   alert_type ENUM('intruder', 'offline') NOT NULL,
-  start_time TIMESTAMP DEFAULT (UTC_TIMESTAMP()),
+  start_time TIMESTAMP DEFAULT (UTC_TIMESTAMP()), 
   end_time TIMESTAMP DEFAULT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (user_id) REFERENCES users(id),                      
   FOREIGN KEY (camera_id) REFERENCES camera(id)
 );
 
 
 -- Default Cameras Trigger
-USE SCMS;
-
 DELIMITER //
 CREATE TRIGGER add_default_cameras
 AFTER INSERT ON users
@@ -65,7 +63,7 @@ END;
 //
 DELIMITER ;
 
---Default alert
+-- Default alert
 DELIMITER //
 CREATE TRIGGER add_intruder_alert
 AFTER INSERT ON camera_information
