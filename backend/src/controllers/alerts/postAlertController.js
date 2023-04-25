@@ -1,6 +1,8 @@
+// Import necessary modules and packages
 import { db, jwtConfig } from "../../../dbConnect.js";
 import jwt from "jsonwebtoken";
 
+// Function to create a new alert for a specific user and camera
 export const postAlert = (req, res) => {
   const token = req.cookies.accessToken;
   if (!token) {
@@ -12,6 +14,7 @@ export const postAlert = (req, res) => {
     const camera_id = req.params.camera_id;
     const { alert_type, end_time } = req.body;
 
+    // SQL query to insert a new alert into the database for a user and camera
     const q =
       "INSERT INTO alerts (user_id, camera_id, alert_type, end_time) VALUES (?, ?, ?, ?)";
 
