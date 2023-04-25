@@ -15,7 +15,7 @@ const initObjectDetector = async (videoRef, onPrediction) => {
       onPrediction(personPredictions);
     } catch (err) {}
 
-    requestAnimationFrame(detectObjects);
+    setTimeout(detectObjects, 1000);
   };
 
   detectObjects();
