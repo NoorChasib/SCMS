@@ -21,6 +21,7 @@ const CameraMainContent = () => {
     (info) => info.camera_id === parseInt(id),
   );
   const videoUrl = currentCameraInfo ? currentCameraInfo.url : "";
+  const cameraName = camera ? camera.name : "";
 
   return (
     <Container size="2xl" py="md">
@@ -50,6 +51,7 @@ const CameraMainContent = () => {
                 key={videoUrl}
                 src={videoUrl}
                 type="application/x-mpegURL"
+                cameraName={cameraName}
               />
             ) : (
               <RecordedVideoPlayer

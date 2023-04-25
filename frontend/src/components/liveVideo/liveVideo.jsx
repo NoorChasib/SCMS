@@ -4,8 +4,12 @@ import "video.js/dist/video-js.css";
 import { format, addSeconds } from "date-fns";
 import initObjectDetector from "../../helpers/objectDetection/objectDetection";
 import checkBlackPixels from "../../helpers/offlineDetection/offlineDetection";
+import {
+  alertNotificationWithTimeout,
+  offlineNotificationWithTimeout,
+} from "../../helpers/notifications";
 
-const LiveVideoPlayer = ({ src, type }) => {
+const LiveVideoPlayer = ({ src, type, cameraName }) => {
   const videoRef = useRef(null);
   const [localTime, setLocalTime] = useState(new Date());
 
@@ -34,12 +38,16 @@ const LiveVideoPlayer = ({ src, type }) => {
 
     // Initialize object detection
     initObjectDetector(videoRef, (predictions) => {
-      console.log(predictions);
+      if (predictions && predictions.length > 0) {
+        alertNotificationWithTimeout(cameraName);
+      }
+
       const isOffline = checkBlackPixels(videoRef.current, 0.7);
       if (isOffline) {
-        console.log("The screen is at least 70% black.");
+        offlineNotificationWithTimeout(cameraName);
       }
     });
+
     // Load the saved playback time from local storage and set it
     const savedTime = localStorage.getItem("videoPlaybackTime");
     if (savedTime) {

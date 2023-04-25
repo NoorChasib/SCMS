@@ -1,9 +1,7 @@
 import ml5 from "ml5";
 
 const initObjectDetector = async (videoRef, onPrediction) => {
-  const objectDetector = await ml5.objectDetector("cocossd", {}, () => {
-    console.log("Object detection model loaded.");
-  });
+  const objectDetector = await ml5.objectDetector("cocossd", {}, () => {});
 
   const detectObjects = async () => {
     if (!videoRef.current) return;
@@ -15,9 +13,7 @@ const initObjectDetector = async (videoRef, onPrediction) => {
           prediction.label === "person" && prediction.confidence >= 0.6,
       );
       onPrediction(personPredictions);
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) {}
 
     requestAnimationFrame(detectObjects);
   };

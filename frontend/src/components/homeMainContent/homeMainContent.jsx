@@ -19,7 +19,7 @@ const HomeMainContent = () => {
               (info) => info.camera_id === camera.id,
             );
             const videoUrl = currentCameraInfo ? currentCameraInfo.url : "";
-
+            const cameraName = camera ? camera.name : "";
             return (
               <Grid.Col key={camera.id} lg={5}>
                 <Text c={darkMode ? "white" : "black"} fw={700} ta="center">
@@ -36,6 +36,7 @@ const HomeMainContent = () => {
                     <LiveVideoPlayer
                       src={videoUrl}
                       type="application/x-mpegURL"
+                      cameraName={cameraName}
                     />
                   </Box>
                 </Link>
