@@ -13,7 +13,6 @@ import { IconAlertCircle } from "@tabler/icons-react";
 import { DataContext } from "../../contexts/dataContext";
 import { useParams } from "react-router-dom";
 import { format, utcToZonedTime } from "date-fns-tz";
-import { parseISO } from "date-fns";
 
 const AlertContent = () => {
   const { darkMode } = useContext(ThemeContext);
