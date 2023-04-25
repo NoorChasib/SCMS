@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Container, Select } from "@mantine/core";
 import ThemeContext from "../../contexts/themeContext";
 import { IconChartBar } from "@tabler/icons-react";
@@ -12,7 +12,7 @@ Chart.register(ArcElement, PieController, Tooltip, Legend);
 
 const GraphContent = () => {
   const { darkMode } = useContext(ThemeContext);
-  const { allAlerts } = useContext(DataContext);
+  const { allAlerts, fetchAllAlerts } = useContext(DataContext);
   const { id } = useParams();
   const [selectedGraphType, setSelectedGraphType] = useState("all");
 
@@ -74,6 +74,10 @@ const GraphContent = () => {
   const handleGraphTypeChange = (value) => {
     setSelectedGraphType(value);
   };
+
+  useEffect(() => {
+    fetchAllAlerts();
+  }, []);
 
   return (
     <Container size="2xl" py="xs" className="rounded-lg border">

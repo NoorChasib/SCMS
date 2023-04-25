@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import { format, addSeconds } from "date-fns";
@@ -8,10 +8,12 @@ import {
   alertNotificationWithTimeout,
   offlineNotificationWithTimeout,
 } from "../../helpers/notifications";
+import { DataContext } from "../../contexts/dataContext";
 
 const LiveVideoPlayer = ({ src, type, cameraName, camera_id }) => {
   const videoRef = useRef(null);
   const [localTime, setLocalTime] = useState(new Date());
+  const { inputAlert } = useContext(DataContext);
 
   const formattedLocalTime = () =>
     format(localTime, "MMM dd yyyy - hh:mm:ss a");
@@ -39,12 +41,12 @@ const LiveVideoPlayer = ({ src, type, cameraName, camera_id }) => {
     // Initialize object detection
     initObjectDetector(videoRef, (predictions) => {
       if (predictions && predictions.length > 0) {
-        alertNotificationWithTimeout(camera_id, cameraName);
+        alertNotificationWithTimeout(camera_id, cameraName, inputAlert);
       }
 
       const isOffline = checkBlackPixels(videoRef.current, 0.7);
       if (isOffline) {
-        offlineNotificationWithTimeout(camera_id, cameraName);
+        offlineNotificationWithTimeout(camera_id, cameraName, inputAlert);
       }
     });
 

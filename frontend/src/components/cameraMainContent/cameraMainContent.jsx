@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Grid, Container, ActionIcon, Text, Group } from "@mantine/core";
 import { DataContext } from "../../contexts/dataContext";
@@ -10,10 +10,14 @@ import AlertContent from "../alertContent/alertContent";
 import GraphContent from "../graphContent/graphContent";
 
 const CameraMainContent = () => {
-  const { cameras, cameraInfo } = useContext(DataContext);
+  const { cameras, cameraInfo, fetchAllAlerts } = useContext(DataContext);
   const { id } = useParams(); // Get the camera id from the URL
   const { darkMode } = useContext(ThemeContext);
   const [recorded, setRecorded] = useState(true); // Whether the video is live or recorded
+
+  useEffect(() => {
+    fetchAllAlerts();
+  }, []);
 
   // Find the corresponding camera and cameraInfo
   const camera = cameras && cameras.find((cam) => cam.id === parseInt(id));

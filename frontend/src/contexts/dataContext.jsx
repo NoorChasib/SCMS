@@ -39,6 +39,15 @@ export const DataContextProvider = ({ children }) => {
     await getAllAlerts(setAllAlerts);
   };
 
+  const addAlert = (newAlert) => {
+    setAllAlerts((prevAlerts) => [...prevAlerts, newAlert]);
+  };
+
+  const inputAlert = async (camera_id, alertData) => {
+    const newAlert = await postAlert(camera_id, alertData);
+    addAlert(newAlert);
+  };
+
   useEffect(() => {
     if (userData) {
       fetchCameras();
@@ -72,8 +81,9 @@ export const DataContextProvider = ({ children }) => {
         cameras,
         cameraInfo,
         allAlerts,
-        postAlert,
         putAlert,
+        inputAlert,
+        fetchAllAlerts,
       }}
     >
       {children}

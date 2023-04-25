@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -16,7 +16,7 @@ import { format, utcToZonedTime } from "date-fns-tz";
 
 const AlertContent = () => {
   const { darkMode } = useContext(ThemeContext);
-  const { allAlerts } = useContext(DataContext);
+  const { allAlerts, fetchAllAlerts } = useContext(DataContext);
   const { id } = useParams();
   const [selectedAlertType, setSelectedAlertType] = useState("all");
 
@@ -46,6 +46,10 @@ const AlertContent = () => {
         (selectedAlertType === "all" || alert.alert_type === selectedAlertType),
     )
     .reverse();
+
+  useEffect(() => {
+    fetchAllAlerts();
+  }, []);
 
   return (
     <Container size="2xl" py="xs" className="rounded-lg border">

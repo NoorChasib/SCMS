@@ -2,6 +2,8 @@ import { IconAlertCircle } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import chimeSound from "/sounds/chime.mp3";
 import { postAlert } from "./http/postAlert";
+import { useContext } from "react";
+import { DataContext } from "../contexts/dataContext";
 
 const chime = new Audio(chimeSound);
 
@@ -85,6 +87,7 @@ const offlineNotification = (cameraName) => {
 export const alertNotificationWithTimeout = (
   camera_id,
   cameraName,
+  inputAlert,
   timeout = 15000,
 ) => {
   const alertData = {
@@ -93,13 +96,14 @@ export const alertNotificationWithTimeout = (
   };
 
   notifyWithTimeout(alertNotification, cameraName, timeout, () => {
-    postAlert(camera_id, alertData);
+    inputAlert(camera_id, alertData);
   });
 };
 
 export const offlineNotificationWithTimeout = (
   camera_id,
   cameraName,
+  inputAlert,
   timeout = 30000,
 ) => {
   const alertData = {
@@ -108,6 +112,6 @@ export const offlineNotificationWithTimeout = (
   };
 
   notifyWithTimeout(offlineNotification, cameraName, timeout, () => {
-    postAlert(camera_id, alertData);
+    inputAlert(camera_id, alertData);
   });
 };
