@@ -1,12 +1,14 @@
+// Import required modules
 import { Register } from "../../../src/controllers/auth/registerController";
 import { db } from "../../../dbConnect";
 import bcrypt from "bcryptjs";
-
+// Start a Jest test suite for the Register function
 describe("Register function", () => {
+  // Reset all mocks before each test case
   beforeEach(() => {
     jest.resetAllMocks();
   });
-
+  // Start a test case for when a new user is successfully created
   test("should create a new user and send a success message", async () => {
     // Mock request body
     const req = {
@@ -17,7 +19,6 @@ describe("Register function", () => {
         password: "123456",
       },
     };
-
     // Mock response object
     const res = {
       status: jest.fn().mockReturnThis(),
