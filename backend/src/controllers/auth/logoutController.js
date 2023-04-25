@@ -12,4 +12,6 @@ export const Logout = (req, res) => {
     .json({
       message: "User has been logged out. Access token cookie cleared.",
     });
+
+  return res;
 };
