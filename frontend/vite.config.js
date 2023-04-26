@@ -12,7 +12,7 @@ export default defineConfig({
     port: parseInt(process.env.VITE_FRONTEND_PORT, 10),
     proxy: {
       "/api": {
-        target: `http://${process.env.VITE_HOST}:${process.env.VITE_BACKEND_PORT}/`,
+        target: `${process.env.VITE_PROTOCAL}://${process.env.VITE_HOST}:${process.env.VITE_BACKEND_PORT}/`,
         changeOrigin: true,
       },
     },

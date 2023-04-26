@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 app.use(express.json()); // Parse incoming JSON requests
 app.use(
   cors({
-    origin: `http://${serverConfig.host}:${serverConfig.frontendPort}`, // Set the allowed origin for CORS requests
+    origin: `${serverConfig.protocal}://${serverConfig.host}:${serverConfig.frontendPort}`, // Set the allowed origin for CORS requests
     credentials: true, // Enable sending of cookies with CORS requests
   }),
 );

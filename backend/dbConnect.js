@@ -23,6 +23,7 @@ const jwtConfig = {
 
 // Define server port configuration options using environment variables
 const serverConfig = {
+  protocal: process.env.PROTOCAL,
   host: process.env.DB_HOST,
   backendPort: process.env.BACKEND_PORT,
   frontendPort: process.env.FRONTEND_PORT,

@@ -74,6 +74,7 @@ JWT_SECRET_KEY=my-long-random-secret-key
 JWT_EXPIRATION=1d
 BACKEND_PORT=3000
 FRONTEND_PORT=8000
+PROTOCAL="http"
 ```
 
 #### Frontend
@@ -85,6 +86,7 @@ example
 VITE_BACKEND_PORT=3000
 VITE_FRONTEND_PORT=8000
 VITE_HOST="localhost"
+VITE_PROTOCAL="http"
 ```
 
 
