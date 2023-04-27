@@ -54,7 +54,7 @@ USE SCMS;
 ```
 8. Run the schema file:
 ```bash
-USE schema.sql;
+SOURCE schema.sql;
 ```
 9. Your database should be set up with the tables and columns defined in the schema file. Alternatively, if you have MySQL Workbench you can copy and past the schema.sql file contents and run the query.
 
