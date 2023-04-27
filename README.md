@@ -38,7 +38,7 @@ git clone https://github.com/NoorChasib/SCMS.git
 
 4. Navigate to the schema file:
 ```bash
-cd SCMS/backend/src/db
+cd backend/src/db
 ```
 5. Open the MySQL shell:
 ```bash
@@ -93,7 +93,7 @@ VITE_PROTOCAL="http"
 ### Backend
 1. Navigate to the cloned repository:
 ```bash
-cd SCMS
+cd SCMS-main
 ```
 2. Start the server for the Backend:
 ```bash
@@ -104,7 +104,7 @@ npm run start:backend
 ### Frontend
 1. In a second terminal window, navigate to the cloned repository:
 ```bash
-cd SCMS
+cd SCMS-main
 ```
 3. Start the server for the Frontend:
 ```bash
